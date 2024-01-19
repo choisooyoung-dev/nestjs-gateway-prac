@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateStreamingDto } from './dto/create-streaming.dto';
 import { UpdateStreamingDto } from './dto/update-streaming.dto';
 import { join } from 'path';
-import * as child_process from 'child_process';
+import { spawn } from 'child_process';
 import * as fs from 'fs';
 
 @Injectable()
@@ -11,12 +11,14 @@ export class StreamingService {
 
   startStreaming(streamKey: string): string {
     const streamPath = `${this.streamFolderPath}/${streamKey}`;
+    console.log('streamPath: ', streamPath);
     const outputPath = `${streamPath}/stream.m3u8`;
+    console.log('outputPath: ', outputPath);
 
     // Ensure the stream directory exists
     this.ensureDirectoryExistence(streamPath);
 
-    const ffmpeg = child_process.spawn('ffmpeg', [
+    const ffmpeg = spawn('ffmpeg', [
       '-i',
       `rtmp://localhost/live/${streamKey}`, // Input from OBS
       '-hls_time',
