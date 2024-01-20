@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Render,
+  Res,
 } from '@nestjs/common';
 import { StreamingService } from './streaming.service';
 import { CreateStreamingDto } from './dto/create-streaming.dto';
@@ -22,13 +23,14 @@ export class StreamingController {
   }
 
   @Get('start/:streamKey')
-  startStreaming(@Param('streamKey') streamKey: string) {
+  startStreaming(@Res() res, @Param('streamKey') streamKey: string) {
     this.streamingService.startStreaming(streamKey);
+    res.redirect('index.html');
     return { message: 'Streaming started', streamKey };
   }
 
   @Get('watch/:streamKey')
-  @Render('stream-viewer.ejs')
+  @Render('index.html')
   watchStream(@Param('streamKey') streamKey: string) {
     return { streamKey };
   }
