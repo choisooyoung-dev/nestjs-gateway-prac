@@ -2,8 +2,10 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import * as NodeMediaServer from 'node-media-server';
 
 @Injectable()
-export class RtmpService implements OnModuleInit {
-  onModuleInit() {
+export class RtmpService implements OnModuleInit
+{
+  onModuleInit()
+  {
     const config = {
       rtmp: {
         port: 1935,
