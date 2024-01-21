@@ -22,12 +22,12 @@ export class StreamingController {
     return this.streamingService.create(createStreamingDto);
   }
 
-  @Get('start/:streamKey')
-  startStreaming(@Res() res, @Param('streamKey') streamKey: string) {
-    this.streamingService.startStreaming(streamKey);
-    res.redirect('index.html');
-    return { message: 'Streaming started', streamKey };
-  }
+  // @Get('start/:streamKey')
+  // startStreaming(@Res() res, @Param('streamKey') streamKey: string) {
+  //   this.streamingService.startStreaming(streamKey);
+  //   res.redirect('index.html');
+  //   return { message: 'Streaming started', streamKey };
+  // }
 
   @Get('watch/:streamKey')
   @Render('index.html')
