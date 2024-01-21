@@ -7,7 +7,7 @@ ENV NGINX_VERSION 1.18.0
 ENV RTMP_MODULE_VERSION 1.2.1
 
 RUN set -x \
-# create nginx user/group
+# create nginx user/group 
     && addgroup -g 101 -S nginx \
     && adduser -S -D -H -u 101 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx \
 # install binaries & other dependencies from the published packaging sources
@@ -49,7 +49,7 @@ RUN cd nginx-${NGINX_VERSION} && \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log
 
-# copy local nginx.conf to docker
+# copy local nginx.conf to docker 
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # export 1935 for rtmp, 8080 for hls or dash
